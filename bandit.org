@@ -1,20 +1,116 @@
 
 * Bandit
   :PROPERTIES:
-  :header-args: :session bandit0
+  :header-args: :session bandit
   :header-args+: :dir /ssh:bandit0@bandit.labs.overthewire.org#2220:~
+  :header-args+: :results output
   :END:
+
+** USEFUL COMMANDS:
+*** Connect to overthewire machine: 
+    ssh ssh://bandit0@bandit.labs.overthewire.org:2220
+*** Temporary directory in overthewire machine:
+    cd /tmp/tmp.vfNEgFSJ6y
 
 ** LEVEL_0
    The goal of this level is for you to log into the game using SSH.
    The host to which you need to connect is bandit.labs.overthewire.org, on port 2220.
    The username is bandit0 and the password is bandit0.
-
+   
+  #+HEADER: :session bandit0
+  #+HEADER: :dir /ssh:bandit0@bandit.labs.overthewire.org#2220:~
+  #+HEADER: :results output
   #+BEGIN_SRC shell
-  ls
+  cat readme
   #+END_SRC
 
   #+RESULTS:
-  : readme
+  : boJ9jbbUNNfktd78OOpsqOltutMc3MY1
+
+  The password for bandit1 is found in plain text in the readme file.
+  It is: boJ9jbbUNNfktd78OOpsqOltutMc3MY1
 
 ** LEVEL_1
+   password : boJ9jbbUNNfktd78OOpsqOltutMc3MY1   
+
+   The password for the next level is stored in a file called readme located in
+   the home directory.
+   Use this password to log into bandit1 using SSH. Whenever you find a password 
+   for a level, use SSH (on port 2220) to log into that level and continue the game.
+
+   #+HEADER: :session bandit1
+   #+HEADER: :dir /ssh:bandit1@bandit.labs.overthewire.org#2220:~
+   #+HEADER: :results output
+   #+BEGIN_SRC shell
+   cat ./-
+   #+END_SRC
+
+   #+RESULTS:
+   : 
+   : CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9
+   
+   The password is located in the file "-".
+   The trick is that this filename gets interpreted as the start for a command option.
+   You need to prepend the file name with ./ (local directory) or to use --
+   to indicate the end of options for the command. 
+   NOTE: the -- approach would still fail for the "-" filename. It will report
+   information for the file open on stdin instead of the - file in the current dir.
+
+   password: CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9
+
+** LEVEL_2
+   password: CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9
+   
+   #+HEADER: :session bandit2
+   #+HEADER: :dir /ssh:bandit2@bandit.labs.overthewire.org#2220:~
+   #+HEADER: :results output
+   #+BEGIN_SRC shell
+   cat "spaces in this filename"
+   #+END_SRC
+
+   #+RESULTS:
+   : 
+   : UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK
+
+   This one is pretty simple the file has spaces in it's name so you need to
+   use quotation when referencing it.
+
+   password: UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK
+
+** LEVEL_3
+   password: UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK
+   
+   #+HEADER: :session bandit3
+   #+HEADER: :dir /ssh:bandit3@bandit.labs.overthewire.org#2220:~
+   #+HEADER: :results output
+   #+BEGIN_SRC shell
+   cat inhere/.hidden 
+   #+END_SRC
+
+   #+RESULTS:
+   : 
+   : pIwrPrtPN36QITSp3EQaw936yaFoFgAB
+
+   The password file (.hidden) is located inside the directory 'inhere'.
+   The file is a hidden file so you need to use the -la option when calling
+   ls for the file to be listed.
+
+   password: pIwrPrtPN36QITSp3EQaw936yaFoFgAB
+
+** LEVEL_4
+   password: pIwrPrtPN36QITSp3EQaw936yaFoFgAB
+   
+   #+HEADER: :session bandit4
+   #+HEADER: :dir /ssh:bandit4@bandit.labs.overthewire.org#2220:~
+   #+HEADER: :results output
+   #+BEGIN_SRC shell
+   
+   #+END_SRC
+
+   #+RESULTS:
+   : 
+   : pIwrPrtPN36QITSp3EQaw936yaFoFgAB
+
+   The ...
+
+   password: 
