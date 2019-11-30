@@ -10,7 +10,7 @@
 *** Connect to overthewire machine: 
     ssh ssh://bandit0@bandit.labs.overthewire.org:2220
 *** Temporary directory in overthewire machine:
-    cd /tmp/tmp.vfNEgFSJ6y
+    cd /tmp/tmp.6gSyB9Dgyz
 
 ** LEVEL_0
    The goal of this level is for you to log into the game using SSH.
@@ -29,6 +29,7 @@
 
   The password for bandit1 is found in plain text in the readme file.
   It is: boJ9jbbUNNfktd78OOpsqOltutMc3MY1
+
 
 ** LEVEL_1
    password : boJ9jbbUNNfktd78OOpsqOltutMc3MY1   
@@ -161,4 +162,36 @@
 ** LEVEL_10
    password: truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk
 
-   password:
+   The password is base64 encoded. Just run this command:
+   cat data.txt | base64 -d
+
+   password: IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR
+
+** LEVEL_11
+   password: IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR
+
+   You need to replace each character with the equivalent char after using rot13.
+   This command will do it:
+   cat data.txt | tr a-zA-Z n-za-mN-ZA-M
+
+   password: 5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu
+
+** LEVEL_12
+   password: 5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu
+
+   This one took a while, you need to use xxd -r to revert the hexdump and
+   after that you can either check the header byte of the file to check the
+   type of compression that was used or you can use the command 'file'.
+   Note: 
+   you can also use the different compression commands to check the integrity of
+   the file effectively giving you the same information.
+
+   After getting the initial binary the following commands were used multiple
+   times to decompress the file: bzip2, gzip, tar
+
+   password: 8ZjyCRiBWFYkneahHwxCv3wb2a1ORpYL
+
+** LEVEL_13
+   password: 8ZjyCRiBWFYkneahHwxCv3wb2a1ORpYL
+
+   password: 
