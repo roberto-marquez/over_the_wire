@@ -273,4 +273,79 @@ vBgsyi/sN3RqRBcGU40fOoZyfAMT8s1m/uYv52O6IgeuZ/ujbjY=
    because the file had the default permissions of any file. I ran chmod 600 to
    only give read and write permissions to the current user and that fixed the
    problem.
+
+   Ran the following command to find the changed line between the password files:
+   diff --suppress-common-lines passwords.old passwords.new
    
+   password: kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd
+
+** LEVEL_18
+   
+   password: kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd
+   
+   The password for this level is in a readme file in the home directory for the user.
+   Because the .bashrc file has code to log you out immediately you can just execute the
+   cat command through ssh (making it an non-interactive shell and as such not running 
+   initialisation files).
+
+   ssh ssh://bandit18@bandit.labs.overthewire.org:2220 cat readme
+
+   password: IueksS7Ubh8G3DCwVzrTd8rAVOwq3M5x
+
+** LEVEL_19
+   
+   password: IueksS7Ubh8G3DCwVzrTd8rAVOwq3M5x
+
+   Run command:
+   ./bandit20-do cat /etc/bandit_pass/bandit20
+
+   password: GbKksEFF4yrVs6il55v6gwY5aVje5f0j
+   
+** LEVEL_20
+
+   password: GbKksEFF4yrVs6il55v6gwY5aVje5f0j
+
+   Run this command to setup a tcp server listening on port 9999 that will return the
+   required password:
+   echo "GbKksEFF4yrVs6il55v6gwY5aVje5f0j" | nc -l -p  9999 &
+   
+   Run the following command to get the password from the suconnect program:
+   ./suconnect 9999
+
+   result:
+   Read: GbKksEFF4yrVs6il55v6gwY5aVje5f0j
+   Password matches, sending next password
+   gE269g2h3mw3pwgrj0Ha9Uoqen1c9DGr
+
+   password: gE269g2h3mw3pwgrj0Ha9Uoqen1c9DGr
+   
+** LEVEL_21
+
+   password: gE269g2h3mw3pwgrj0Ha9Uoqen1c9DGr
+
+   Run the following commands to check the cron job that is being executed:
+   less /etc/cron.d/cronjob_bandit22
+
+   result:
+   @reboot bandit22 /usr/bin/cronjob_bandit22.sh &> /dev/null
+   \* * * * * bandit22 /usr/bin/cronjob_bandit22.sh &> /dev/null
+
+   Check the cronjob_bandit22.sh file:
+   less /usr/bin/cronjob_bandit22.sh
+   
+   result:
+   #!/bin/bash
+   chmod 644 /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+   cat /etc/bandit_pass/bandit22 > /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+
+   Check the file /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+   result:
+   Yk7owGAcWjwMVRwrTesJEwB7WVOiILLI
+
+   password: Yk7owGAcWjwMVRwrTesJEwB7WVOiILLI
+
+** LEVEL_22
+   
+   password: Yk7owGAcWjwMVRwrTesJEwB7WVOiILLI
+
+   password: 
