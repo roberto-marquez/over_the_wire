@@ -30,7 +30,6 @@
   The password for bandit1 is found in plain text in the readme file.
   It is: boJ9jbbUNNfktd78OOpsqOltutMc3MY1
 
-
 ** LEVEL_1
    password : boJ9jbbUNNfktd78OOpsqOltutMc3MY1   
 
