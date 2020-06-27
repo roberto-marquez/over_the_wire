@@ -31,7 +31,7 @@
   It is: boJ9jbbUNNfktd78OOpsqOltutMc3MY1
 
 ** LEVEL_1
-   password : boJ9jbbUNNfktd78OOpsqOltutMc3MY1   
+   password : boJ9jbbUNNfktd78OOpsqOltutMc3MY1
 
    The password for the next level is stored in a file called readme located in
    the home directory.
@@ -50,7 +50,7 @@
    : CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9
    
    The password is located in the file "-".
-   The trick is that this filename gets interpreted as the start for a command option.
+   The trick is that this filename gets interpreted as the start for a command option or stdin.
    You need to prepend the file name with ./ (local directory) or to use --
    to indicate the end of options for the command. 
    NOTE: the -- approach would still fail for the "-" filename. It will report
@@ -112,7 +112,6 @@
    Googled around and found that the file had to be not executable and its size was 1033 bytes.
 
    password : DXjZPULLxYr17uwoI01bNLQbtFemEgo7
-
    
 ** LEVEL_6
    password: DXjZPULLxYr17uwoI01bNLQbtFemEgo7
@@ -125,7 +124,6 @@
    ./var/lib/dpkg/info/bandit7.password
 
    password: HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs
-
 
 ** LEVEL_7
    password: HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs
